@@ -1,0 +1,36 @@
+{% extends 'admission/base.html'%} {% load static %} {% block title %} Home {%
+endblock %} {% block content1 %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+{% endblock %} {% block content%}
+
+<div class="main">
+  <div class="info">
+    <div class="info-content">
+      <h1 class="heading">Student Admin Console</h1>
+      <h4 class="head-txt">For Faculty Only</h4>
+      <div class="wrapper">
+        <ul class="dynamic-txts">
+          <li><span>Add Data.</span></li>
+          <li><span>Edit Data.</span></li>
+          <li><span>Delete Data.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="svg-image">
+    <img src="{% static 'images/hero.svg' %} " alt="index svg image" />
+  </div>
+</div>
+
+{% endblock %} {% block script %}
+
+<script>
+  window.onload = activeFunction();
+  function activeFunction() {
+    var ele = document.getElementById("navitem1");
+    ele.classList.add("active");
+  }
+</script>
+
+{% endblock %}

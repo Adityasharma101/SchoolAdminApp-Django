@@ -1,0 +1,116 @@
+{% extends 'admission/base.html'%} {% load static %} {% block title %} Students
+{% endblock %} {% block content1 %}
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    height: 100vh;
+    background: var(--color1);
+  }
+
+  .student-container {
+    color: var(--color2);
+    position: relative;
+  }
+
+  .table-data {
+    color: var(--color2);
+  }
+
+  .elseTxt {
+    display: flex;
+    justify-content: center;
+  }
+  .elseTxt p {
+    padding: 0.5rem;
+    color: var(--color2);
+    border-bottom: 2px solid var(--color3);
+  }
+  .panel {
+    margin-top: 15px;
+    color: var(--color2);
+    padding: 0 18px;
+    background-color: var(--color1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+  .buttons {
+    display: flex;
+  }
+
+  .deleteBtn,
+  .editBtn {
+    text-decoration: none;
+    border: 1px solid var(--color2);
+    background-color: var(--color1);
+    padding: 4px 14px;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    border-radius: 5px;
+  }
+
+  .deleteBtn:hover,
+  .editBtn:hover {
+    background-color: var(--color2);
+    border: 1px solid var(--color1);
+  }
+</style>
+{% endblock %} {% block content %}
+
+<div class="student-container">
+  <h2 class="text-center">Students Data</h2>
+</div>
+
+{% if student %}
+<div class="container mt-3">
+  <table class="table table-data">
+    <thead>
+      <tr>
+        <th scope="col">R.NO</th>
+        <th scope="col">NAME</th>
+        <th scope="col">CLASS</th>
+        <th scope="col">AGE</th>
+        <th scope="col">CITY</th>
+        <th scope="col">DELETE</th>
+        <th scope="col">EDIT</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for stud in student %}
+      <tr>
+        <th scope="row">{{stud.sid}}</th>
+        <td>{{stud.name}}</td>
+        <td>{{stud.Standard}}</td>
+        <td>{{stud.age}}</td>
+        <td>{{stud.city}}</td>
+
+        <td>
+          <a href="/admission/delete/{{stud.sid}}" class="deleteBtn">❌</a>
+        </td>
+
+        <td><a href="/admission/edit/{{stud.sid}}" class="editBtn">📝</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="elseTxt">
+  <p>Dont Have anything to show here</p>
+</div>
+{% endif %} {% endblock %} {% block script %}
+
+<script>
+  window.onload = activeFunction();
+  function activeFunction() {
+    var ele = document.getElementById("navitem3");
+    ele.classList.add("active");
+  }
+</script>
+
+{% endblock %}
